@@ -1,7 +1,9 @@
-import mongoose, { Schema } from "mongoose"
+import mongoose, { Schema } from "mongoose" //import mongoose t perform data modelling.
+//import Schema to create schemas.
 import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt"
 
+//Below is the code for writing database queries for mongoDB.
 const userSchema = new Schema(
     {
         username: {
@@ -33,11 +35,16 @@ const userSchema = new Schema(
         coverImage: {
             type: String
         },
-        watchHistor: [
+        watchHistory: [
             {
+                /*When we want to establish a realtion between two 
+                schemas or fileds in mongoo db, we can write in the below method.
+                
+                The type method remains the smae and ref is compulsory after that.*/
                 type: Schema.Types.ObjectId,
                 ref: "Video"
             }
+            //The above one is an array 
         ],
         password: {
             type: String,
@@ -48,6 +55,7 @@ const userSchema = new Schema(
         }
     }
     , { timestamps: true }
+    //timestamps provide us with two datas- updatedAt and createdAT
 )
 
 userSchema.pre("save", async function (next) {
