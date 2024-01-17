@@ -57,3 +57,7 @@ utils
 setup database
 define .env variables
 connect to db using mongoose
+
+create index.js in db.
+
+install cookie-parser and cors
