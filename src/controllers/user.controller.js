@@ -4,7 +4,6 @@ import { User } from "../models/user.model.js"
 import { uploadOnCloudinary } from "../utils/cloudinary.js"
 import { ApiResponse } from "../utils/ApiResponse.js"
 import jwt from "jsonwebtoken";
-import { configDotenv } from "dotenv"
 
 const generateAccessAndRefreshTokens = async (userId) => {
     try {
@@ -190,7 +189,7 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
             throw new ApiError(401, "invalid refresh token")
         }
 
-        if (incomingRefreshToken !== user?.refreshToken) {
+        if (!incomingRefreshToken !== user?.refreshToken) {
             throw new ApiError(401, "Refresh token in expired or used")
         }
 
@@ -216,8 +215,6 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
         throw new ApiError(401, error?.message ||
             "Invalid refresh token")
     }
-
-
 
 })
 
