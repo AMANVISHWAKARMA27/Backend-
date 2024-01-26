@@ -59,7 +59,7 @@ router
 router
     .route("/cover-image")
     .patch(verifyJWT,
-        upload.single("/coverImage"),
+        upload.single("coverImage"),
         updateUserCoverImage)
 router
     .route("/c/:username")
